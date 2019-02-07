@@ -1,34 +1,36 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { connect } from "react-redux";
-
+import { connect } from 'react-redux';
 
 class App extends Component {
   render() {
-  return (
-    <div className="App">
-      <div className="Age-label">
-        your age: <span>{this.props.age}</span> 
+    return (
+      <div className="App">
+        <div className="Age-label">
+          your age: <span>{this.props.age}</span>
+        </div>
+        <button onClick={this.props.onAgeUp}>Age UP</button>
+        <button onClick={this.props.onAgeDown}>Age Down</button>
       </div>
-      <button onClick={this.props.onAgeUp}>Age UP</button>
-      <button onClick={this.props.onAgeDown}>Age Down</button>
-    </div>
-  );
+    );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-      age: state.age
-  }
-}
+    age: state.age,
+  };
+};
 
-const mapDispatchToProps =(dispatch)=>{
+const mapDispatchToProps = dispatch => {
   return {
-   onAgeUp: ()=> dispatch({type:'AGE_UP'}),
-   onAgeDown: ()=> dispatch({type:'AGE_DOWN'})
-  }
-}
+    onAgeUp: () => dispatch({ type: 'AGE_UP' }),
+    onAgeDown: () => dispatch({ type: 'AGE_DOWN' }),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
